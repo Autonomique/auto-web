@@ -33,7 +33,7 @@ jobs:
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         id: pages
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
-      - name: Build both pages
+      - name: Build the site
         env:
           PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}
           REPOSITORY_NAME: ${{ github.event.repository.name }}
