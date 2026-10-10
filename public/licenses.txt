@@ -1,4 +1,4 @@
-Baral Labs website — third-party notices
+Autonomique website — third-party notices
 
 The following MIT-licensed packages are used by the website:
 

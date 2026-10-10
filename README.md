@@ -1,15 +1,23 @@
-# Baral Labs website
+# Autonomique website
 
-Standalone website for **Baral Labs** (`/`, "AI experiments, in the open") and **Nemo** (`/nemo/`), an early-development native macOS launcher and AI assistant. iOS, agents, and Raycast-compatible extensions are planned, not available.
+Marketing website for **Autonomique**, physical AI for industrial robots (www.autonomique.ai). Visual language adapted from the Nemo page of the original Baral Labs site: sage/olive light surfaces, deep-green bands, lime accents, mono eyebrows.
 
-Nemo's source is public at [vktt/SuperSpot](https://github.com/vktt/SuperSpot), but Nemo is proprietary software, not open source. Product, build, license, and roadmap links point to that repository.
+Pages (each a real HTML entry point):
 
-The site is static (React, Vite, Tailwind). It has no analytics, tracking, API-key collection, or real AI requests; the launcher previews are illustrations.
+- `/`: home + platform (hero, reliability gap, Perceive/Reason/Act, Generalist–Specialist, tele-op, production proof, industries, latest news, partnership CTA)
+- `/industries/`: automotive, electronics, aerospace, pharma & regulated
+- `/news/`: all news posts, rendered in full with links to the originals
+- `/company/`: story, principles, team, backers, careers
 
-Default URLs once deployed:
+The site is static (React, Vite, Tailwind), with no analytics or tracking.
 
-- https://vktt.github.io/baral-labs-website/
-- https://vktt.github.io/baral-labs-website/nemo/
+## Editing content
+
+All copy that changes over time lives in `src/content.ts`: news articles (the "CMS"), industries, team, backers, hiring areas, and the contact email. To add a news post, add an entry at the top of `articles` (newest first).
+
+### Photos
+
+Illustrations stand in for photography by default. To use a photo, put the file in `public/images/` and set its name in `photos` in `src/content.ts` (`deployment`, `teleop`, `team`).
 
 ## Local development
 
@@ -24,12 +32,12 @@ npm run dev        # http://localhost:5173/
 
 ```sh
 npm run lint
-npm run build -- --base=/baral-labs-website/   # GitHub project site
+npm run build -- --base=/auto-web/   # GitHub project site
 npm run build -- --base=/                      # custom domain
-npx vite preview --base /baral-labs-website/   # preview the project-site build
+npx vite preview --base /auto-web/   # preview the project-site build
 ```
 
-Both pages are real HTML entry points (`index.html`, `nemo/index.html`) and internal links use Vite's base path.
+Every page is a real HTML entry point (`index.html`, `industries/`, `news/`, `company/`) and internal links use Vite's base path.
 
 ## Deployment
 
@@ -37,12 +45,12 @@ Both pages are real HTML entry points (`index.html`, `nemo/index.html`) and inte
 
 1. In **Settings → Pages**, set **Source** to **GitHub Actions**.
 2. Merge to `main` (or run the workflow manually on `main`).
-3. Confirm the deploy job succeeds and open the URLs above.
+3. Confirm the deploy job succeeds.
 
-### Custom domain (baral-labs.com)
+### Custom domain (autonomique.ai)
 
-1. In **Settings → Pages → Custom domain**, enter `baral-labs.com` and save.
-2. At your DNS provider, add apex `A` records to `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` (optionally the matching `AAAA` records from GitHub's docs), and a `www` `CNAME` to `vktt.github.io`.
+1. In **Settings → Pages → Custom domain**, enter `www.autonomique.ai` and save.
+2. At your DNS provider, add apex `A` records to `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` (optionally the matching `AAAA` records from GitHub's docs), and a `www` `CNAME` to `<owner>.github.io`.
 3. Wait for the DNS check to pass, then enable **Enforce HTTPS**.
 4. Re-run the workflow on `main`. Pages then reports an empty base path, so the site builds for `/`.
 
